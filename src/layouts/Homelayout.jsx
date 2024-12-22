@@ -10,7 +10,7 @@ const Homelayout = () => {
         <header>
           <Navbar></Navbar>
         </header>
-        <main>
+        <main className="py-24">
           <Slider></Slider>
         </main>
         <footer></footer>

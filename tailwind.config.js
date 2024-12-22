@@ -7,6 +7,7 @@ export default {
     extend: {
       fontFamily: {
         montseerat: ["Montserrat", "serif"],
+        bebasNueue: ["Bebas Neue", "serif"],
       },
     },
   },

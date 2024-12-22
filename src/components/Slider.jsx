@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaArrowRightLong } from "react-icons/fa6";
 // import { useHistory } from "react-router-dom";
 
 const Slider = () => {
@@ -42,16 +43,23 @@ const Slider = () => {
   };
 
   return (
-    <div className="w-full p-4 flex space-x-4">
+    <div className="w-full p-4 flex space-x-4 pb-10">
       {/* Left Side: Active Place Description and Button */}
-      <div className="w-1/2  p-4 rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold">{activePlace.name}</h2>
-        <p className="mt-2">{activePlace.description}</p>
+      <div className="w-1/2  py-4 rounded-lg shadow-md">
+        <h2 className="text-7xl font-bebasNueue ">{activePlace.name}</h2>
+        <p className="mt-2 text-[16px]">
+          {activePlace.description.length > 100
+            ? activePlace.description.slice(0, 200) + " . . ."
+            : activePlace.description}
+        </p>
         <button
-          className="mt-4 btn btn-primary"
+          className="mt-4 border-none btn bg-[#F9A51A] flex items-center"
           onClick={() => handleImageClick(activePlace)}
         >
-          Explore {activePlace.name}
+          Booking
+          <span>
+            <FaArrowRightLong></FaArrowRightLong>
+          </span>
         </button>
       </div>
 
@@ -60,7 +68,7 @@ const Slider = () => {
         {places.map((place) => (
           <div
             key={place.name}
-            className="w-1/4 p-2"
+            className="w-[270px] h-[200px] p-2"
             onClick={() => setActivePlace(place)}
           >
             <div className="rounded-lg shadow-md cursor-pointer">
@@ -69,11 +77,13 @@ const Slider = () => {
                 alt={place.name}
                 className={`w-full h-40 object-cover rounded-md ${
                   activePlace.name === place.name
-                    ? "border-4 border-blue-500"
+                    ? "border-2 border-yellow-600"
                     : ""
                 }`}
               />
-              <h3 className="text-center mt-2">{place.name}</h3>
+              <h3 className="text-center mt-2 font-bebasNueue text-2xl">
+                {place.name}
+              </h3>
             </div>
           </div>
         ))}
