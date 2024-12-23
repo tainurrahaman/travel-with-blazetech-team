@@ -1,12 +1,13 @@
 import { FaGithub } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 
 const SignIn = () => {
   const { signInUser, setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -18,6 +19,7 @@ const SignIn = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
+        navigate("/");
       })
       .catch((err) => {
         console.log(err.code);

@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, userSignOut } = useContext(AuthContext);
 
   return (
     <div>
@@ -49,10 +49,10 @@ const Navbar = () => {
         </div>
 
         {/* Login Button */}
-        {user ? (
-          <NavLink to="/login" className="btn btn-warning">
+        {user && user?.email ? (
+          <button onClick={userSignOut} className="btn btn-warning">
             Logout
-          </NavLink>
+          </button>
         ) : (
           <NavLink to="/login" className="btn btn-warning">
             Login

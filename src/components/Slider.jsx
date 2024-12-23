@@ -19,8 +19,6 @@ const Slider = () => {
     navigate(`/bookingPages`, { state: { place } });
   };
 
-  console.log(activePlace);
-
   return (
     <div className="w-full p-4 flex space-x-4 pb-10">
       {/* Left Side: Active Place Description and Button */}
