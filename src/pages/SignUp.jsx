@@ -1,10 +1,33 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import Navbar from "../components/Navbar";
 import { FaGithub } from "react-icons/fa";
+import { AuthContext } from "../provider/AuthProvider";
 
 const SignUp = () => {
+  const { createNewUser, setUser } = useContext(AuthContext);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.target);
+    const firstName = form.get("name");
+    const lastName = form.get("name");
+    const email = form.get("email");
+    const password = form.get("password");
+
+    createNewUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+  };
+
   return (
     <div className="bg-gray-600 font-montseerat">
       <div className="mb-10">
@@ -16,13 +39,14 @@ const SignUp = () => {
             <h2 className="text-2xl font-semibold text-center mb-10">
               Registration Here
             </h2>
-            <form>
+            <form onSubmit={handleSubmit}>
               {/* First Name */}
               <div className="mb-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   First Name
                 </label>
                 <input
+                  name="text"
                   type="text"
                   placeholder="Enter your first name"
                   className="input input-bordered w-full"
@@ -34,6 +58,7 @@ const SignUp = () => {
                 </label>
 
                 <input
+                  name="text"
                   type="text"
                   placeholder="Enter your last name"
                   className="input input-bordered w-full"
@@ -45,7 +70,8 @@ const SignUp = () => {
                   Email
                 </label>
                 <input
-                  type="text"
+                  name="email"
+                  type="email"
                   placeholder="Enter your email"
                   className="input input-bordered w-full"
                 />
@@ -57,6 +83,7 @@ const SignUp = () => {
                   Password
                 </label>
                 <input
+                  name="password"
                   type="password"
                   placeholder="Enter your password"
                   className="input input-bordered w-full"
