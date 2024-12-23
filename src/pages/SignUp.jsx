@@ -6,7 +6,8 @@ import { FaGithub } from "react-icons/fa";
 import { AuthContext } from "../provider/AuthProvider";
 
 const SignUp = () => {
-  const { createNewUser, setUser, updateUserProfile } = useContext(AuthContext);
+  const { createNewUser, setUser, updateUserProfile, signUpWithGoogle } =
+    useContext(AuthContext);
   const navigate = useNavigate();
   const [error, setError] = useState({});
 
@@ -36,6 +37,15 @@ const SignUp = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
+      });
+
+    signUpWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -136,10 +146,14 @@ const SignUp = () => {
                   <FaGithub className="text-black-600 h-[37px] w-[37px]" />
                   <span>Continue with Github</span>
                 </button>
-                <button className="btn btn-outline  w-[300px] flex items-center justify-center space-x-2">
+                <Link
+                  onClick={signUpWithGoogle}
+                  to="/"
+                  className="btn btn-outline  w-[300px] flex items-center justify-center space-x-2"
+                >
                   <FcGoogle className=" h-[37px] w-[37px]" />
                   <span>Continue with Google</span>
-                </button>
+                </Link>
               </div>
             </div>
           </div>

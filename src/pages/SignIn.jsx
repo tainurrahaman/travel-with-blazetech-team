@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 
 const SignIn = () => {
-  const { signInUser, setUser } = useContext(AuthContext);
+  const { signInUser, setUser, signUpWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
@@ -23,6 +23,15 @@ const SignIn = () => {
       })
       .catch((err) => {
         console.log(err.code);
+      });
+
+    signUpWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -100,10 +109,14 @@ const SignIn = () => {
                   <FaGithub className="text-black-600 h-[37px] w-[37px]" />
                   <span>Continue with Github</span>
                 </button>
-                <button className="btn btn-outline  w-[300px] flex items-center justify-center space-x-2">
+                <Link
+                  onClick={signUpWithGoogle}
+                  to="/"
+                  className="btn btn-outline  w-[300px] flex items-center justify-center space-x-2"
+                >
                   <FcGoogle className=" h-[37px] w-[37px]" />
                   <span>Continue with Google</span>
-                </button>
+                </Link>
               </div>
             </div>
           </div>
