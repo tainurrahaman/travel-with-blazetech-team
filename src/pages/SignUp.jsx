@@ -31,7 +31,6 @@ const SignUp = () => {
             setError(err);
           });
         navigate("/");
-        console.log(user);
       })
       .catch((error) => {
         const errorCode = error.code;

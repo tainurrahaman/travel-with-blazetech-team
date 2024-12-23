@@ -2,12 +2,15 @@ import { FaGithub } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { AuthContext } from "../provider/AuthProvider";
+import { sendPasswordResetEmail } from "firebase/auth";
+import auth from "../firebase/firebase.config";
 
 const SignIn = () => {
   const { signInUser, setUser, signUpWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
+  const emailRef = useRef();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -35,6 +38,17 @@ const SignIn = () => {
       });
   };
 
+  const handlePasswordReset = () => {
+    const email = emailRef.current.value;
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        alert("Password reset email sent.Check your email inbox");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="bg-gray-600 font-montseerat">
       <div className="mb-10">
@@ -53,6 +67,7 @@ const SignIn = () => {
                   Username or Email
                 </label>
                 <input
+                  ref={emailRef}
                   name="email"
                   type="text"
                   placeholder="Enter your username or email"
@@ -79,9 +94,12 @@ const SignIn = () => {
                   <input type="checkbox" className="checkbox" />
                   <span className="text-sm text-gray-700">Remember Me</span>
                 </label>
-                <Link className="text-sm text-blue-600 hover:underline">
+                <label
+                  onClick={handlePasswordReset}
+                  className="text-sm text-blue-600 hover:underline"
+                >
                   Forgot Password?
-                </Link>
+                </label>
               </div>
 
               {/* Login Button */}
