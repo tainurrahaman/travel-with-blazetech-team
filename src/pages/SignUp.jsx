@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import Navbar from "../components/Navbar";
@@ -6,8 +6,9 @@ import { FaGithub } from "react-icons/fa";
 import { AuthContext } from "../provider/AuthProvider";
 
 const SignUp = () => {
-  const { createNewUser, setUser } = useContext(AuthContext);
+  const { createNewUser, setUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [error, setError] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,6 +22,13 @@ const SignUp = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
+        updateUserProfile({ displayName: firstName + lastName })
+          .then(() => {
+            navigate("/");
+          })
+          .catch((err) => {
+            setError(err);
+          });
         navigate("/");
         console.log(user);
       })

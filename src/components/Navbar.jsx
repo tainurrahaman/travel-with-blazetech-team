@@ -1,7 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
 import navLogo from "../assets/logo.png";
 import { FiSearch } from "react-icons/fi";
+import { useContext } from "react";
+import { AuthContext } from "../provider/AuthProvider";
+
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
+
   return (
     <div>
       <div className="container mx-auto flex items-center justify-between py-4 px-6 text-white">
@@ -44,9 +49,15 @@ const Navbar = () => {
         </div>
 
         {/* Login Button */}
-        <NavLink to="/login" className="btn btn-warning">
-          Login
-        </NavLink>
+        {user ? (
+          <NavLink to="/login" className="btn btn-warning">
+            Logout
+          </NavLink>
+        ) : (
+          <NavLink to="/login" className="btn btn-warning">
+            Login
+          </NavLink>
+        )}
       </div>
     </div>
   );
