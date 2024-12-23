@@ -1,4 +1,4 @@
-import { FaFacebook } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
@@ -73,8 +73,8 @@ const SignIn = () => {
             <div className="flex justify-center items-center">
               <div className="space-y-4">
                 <button className="btn btn-outline w-[300px] flex items-center justify-center space-x-1">
-                  <FaFacebook className="text-blue-600 h-[37px] w-[37px]" />
-                  <span>Continue with Facebook</span>
+                  <FaGithub className="text-black-600 h-[37px] w-[37px]" />
+                  <span>Continue with Github</span>
                 </button>
                 <button className="btn btn-outline  w-[300px] flex items-center justify-center space-x-2">
                   <FcGoogle className=" h-[37px] w-[37px]" />
