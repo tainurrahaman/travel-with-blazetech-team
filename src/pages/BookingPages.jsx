@@ -1,8 +1,6 @@
-import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import Slider from "../components/Slider";
 
-const Homelayout = () => {
+const BookingPages = () => {
   return (
     <div className="relative bg-[url('/bg.png')]  bg-cover font-montseerat">
       <div className="absolute inset-0 bg-black/50"></div>
@@ -10,15 +8,10 @@ const Homelayout = () => {
         <header>
           <Navbar></Navbar>
         </header>
-        <main className="py-24  w-11/12 mx-auto">
-          <Slider></Slider>
-        </main>
-        <footer className="w-full">
-          <Footer></Footer>
-        </footer>
+        <main className="py-24  w-11/12 mx-auto"></main>
       </div>
     </div>
   );
 };
 
-export default Homelayout;
+export default BookingPages;
