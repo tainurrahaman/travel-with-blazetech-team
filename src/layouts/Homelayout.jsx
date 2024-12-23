@@ -1,8 +1,17 @@
+import { useContext } from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Slider from "../components/Slider";
+import { AuthContext } from "../provider/AuthProvider";
+import Loadingpage from "../pages/Loadingpage";
 
 const Homelayout = () => {
+  const { loading } = useContext(AuthContext);
+
+  if (loading) {
+    return <Loadingpage></Loadingpage>;
+  }
+
   return (
     <div className="relative bg-[url('/bg.png')]  bg-cover font-montseerat">
       <div className="absolute inset-0 bg-black/50"></div>

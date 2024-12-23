@@ -3,6 +3,7 @@ import Homelayout from "../layouts/Homelayout";
 import BookingPages from "../pages/BookingPages";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/Signup";
+import PrivateRoute from "./PrivateRoute";
 
 const Router = createBrowserRouter([
   {
@@ -11,7 +12,11 @@ const Router = createBrowserRouter([
   },
   {
     path: "/bookingPages",
-    element: <BookingPages></BookingPages>,
+    element: (
+      <PrivateRoute>
+        <BookingPages></BookingPages>
+      </PrivateRoute>
+    ),
   },
   {
     path: "/login",

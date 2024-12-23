@@ -5,7 +5,6 @@ import { FaCalendarAlt } from "react-icons/fa";
 const BookingPages = () => {
   const location = useLocation();
   const { place } = location.state || {};
-  console.log(place);
 
   return (
     <div className="relative bg-[url('/bg.png')]  bg-cover font-montseerat">
