@@ -1,9 +1,10 @@
+import React from "react";
 import { FaFacebook } from "react-icons/fa";
-import Navbar from "../components/Navbar";
-import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+import Navbar from "../components/Navbar";
 
-const SignIn = () => {
+const SignUp = () => {
   return (
     <div className="bg-gray-600 font-montseerat">
       <div className="mb-10">
@@ -13,23 +14,45 @@ const SignIn = () => {
         <div className=" rounded-md px-14 py-8 bg-white  w-[500px]">
           <div className="">
             <h2 className="text-2xl font-semibold text-center mb-10">
-              Login Here
+              Registration Here
             </h2>
             <form>
-              {/* Username or Email */}
-              <div className="mb-4">
+              {/* First Name */}
+              <div className="mb-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Username or Email
+                  First Name
                 </label>
                 <input
                   type="text"
-                  placeholder="Enter your username or email"
+                  placeholder="Enter your first name"
+                  className="input input-bordered w-full"
+                />
+              </div>
+              <div className="mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Last Name
+                </label>
+
+                <input
+                  type="text"
+                  placeholder="Enter your last name"
+                  className="input input-bordered w-full"
+                />
+              </div>
+
+              <div className="mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Email
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter your email"
                   className="input input-bordered w-full"
                 />
               </div>
 
               {/* Password */}
-              <div className="mb-4">
+              <div className="mb-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Password
                 </label>
@@ -39,28 +62,27 @@ const SignIn = () => {
                   className="input input-bordered w-full"
                 />
               </div>
-
-              {/* Remember Me & Forgot Password */}
-              <div className="flex justify-between items-center mb-6">
-                <label className="flex items-center space-x-2">
-                  <input type="checkbox" className="checkbox" />
-                  <span className="text-sm text-gray-700">Remember Me</span>
+              <div className="mb-6">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Confirm Password
                 </label>
-                <a href="#" className="text-sm text-blue-600 hover:underline">
-                  Forgot Password?
-                </a>
+                <input
+                  type="password"
+                  placeholder="Confirm your password"
+                  className="input input-bordered w-full"
+                />
               </div>
 
               {/* Login Button */}
               <button className="btn bg-[#F9A51A] rounded-md w-full mb-4">
-                Login
+                Registration
               </button>
 
               {/* Create an Account */}
               <p className="text-sm text-center text-gray-600">
-                Don’t have an account?{" "}
-                <Link to="/register" className="text-blue-600 hover:underline">
-                  Create an account
+                Already have an account ?
+                <Link to="/login" className="text-blue-600 hover:underline">
+                  Login
                 </Link>
               </p>
             </form>
@@ -89,4 +111,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
