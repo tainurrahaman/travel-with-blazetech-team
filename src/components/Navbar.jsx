@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import navLogo from "../assets/logo.png";
 import { FiSearch } from "react-icons/fi";
 const Navbar = () => {
@@ -28,11 +29,11 @@ const Navbar = () => {
 
         {/* Menu Items */}
         <div className="hidden md:flex items-center space-x-6 mr-5">
+          <Link to="/" className="hover:text-yellow-400">
+            Home
+          </Link>
           <a href="#news" className="hover:text-yellow-400">
             News
-          </a>
-          <a href="#destination" className="hover:text-yellow-400">
-            Destination
           </a>
           <a href="#blog" className="hover:text-yellow-400">
             Blog

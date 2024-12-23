@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
-// import { useHistory } from "react-router-dom";
 
 const Slider = () => {
   const [places, setPlaces] = useState([]);
@@ -15,10 +14,12 @@ const Slider = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  const handleImageClick = (place) => {
+  const handleBooking = (place) => {
     // Navigate to a new component with the selected place info
-    navigate(`/place/${place.name}`, { place });
+    navigate(`/bookingPages`, { state: { place } });
   };
+
+  console.log(activePlace);
 
   return (
     <div className="w-full p-4 flex space-x-4 pb-10">
@@ -33,15 +34,19 @@ const Slider = () => {
             ? activePlace.description.slice(0, 200) + " . . ."
             : activePlace.description}
         </p>
-        <button
-          className="mt-4 border-none btn bg-[#F9A51A] flex items-center"
-          onClick={() => handleImageClick(activePlace)}
-        >
-          Booking
-          <span>
-            <FaArrowRightLong></FaArrowRightLong>
-          </span>
-        </button>
+        {activePlace.length === 0 ? (
+          ""
+        ) : (
+          <button
+            className="mt-4 border-none btn bg-[#F9A51A] flex items-center"
+            onClick={() => handleBooking(activePlace)}
+          >
+            Booking
+            <span>
+              <FaArrowRightLong></FaArrowRightLong>
+            </span>
+          </button>
+        )}
       </div>
 
       {/* Right Side: Images of all data */}
