@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import Navbar from "../components/Navbar";
 import { FaGithub } from "react-icons/fa";
@@ -7,6 +7,7 @@ import { AuthContext } from "../provider/AuthProvider";
 
 const SignUp = () => {
   const { createNewUser, setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,6 +21,8 @@ const SignUp = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
+        navigate("/");
+        console.log(user);
       })
       .catch((error) => {
         const errorCode = error.code;

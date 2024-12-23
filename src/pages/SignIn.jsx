@@ -2,8 +2,28 @@ import { FaGithub } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../provider/AuthProvider";
 
 const SignIn = () => {
+  const { signInUser, setUser } = useContext(AuthContext);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.target);
+    const email = form.get("email");
+    const password = form.get("password");
+
+    signInUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+      })
+      .catch((err) => {
+        console.log(err.code);
+      });
+  };
+
   return (
     <div className="bg-gray-600 font-montseerat">
       <div className="mb-10">
@@ -15,13 +35,14 @@ const SignIn = () => {
             <h2 className="text-2xl font-semibold text-center mb-10">
               Login Here
             </h2>
-            <form>
+            <form onSubmit={handleLogin}>
               {/* Username or Email */}
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Username or Email
                 </label>
                 <input
+                  name="email"
                   type="text"
                   placeholder="Enter your username or email"
                   className="input input-bordered w-full"
@@ -34,6 +55,7 @@ const SignIn = () => {
                   Password
                 </label>
                 <input
+                  name="password"
                   type="password"
                   placeholder="Enter your password"
                   className="input input-bordered w-full"
