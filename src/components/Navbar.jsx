@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import navLogo from "../assets/logo.png";
 import { FiSearch } from "react-icons/fi";
 const Navbar = () => {
   return (
-    <div className="text-white ">
-      <div className="container mx-auto flex items-center justify-between py-4 px-6">
+    <div>
+      <div className="container mx-auto flex items-center justify-between py-4 px-6 text-white">
         {/* Logo */}
         <div className="flex items-center space-x-2 ">
           <img src={navLogo} alt="Logo" className="h-14 w-[120px] invert" />
@@ -44,7 +44,9 @@ const Navbar = () => {
         </div>
 
         {/* Login Button */}
-        <button className="btn btn-warning">Login</button>
+        <NavLink to="/login" className="btn btn-warning">
+          Login
+        </NavLink>
       </div>
     </div>
   );
